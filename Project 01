@@ -1,0 +1,70 @@
+#  Campus Placement Eligibility Predictor
+
+# Step 1: Import Libraries
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Step 2: Create Sample Dataset (You can replace with your own dataset)
+data = {
+    '10th': [85, 78, 90, 60, 88, 76, 95, 70, 82, 68],
+    '12th': [80, 75, 92, 65, 85, 70, 96, 72, 84, 66],
+    'UG': [75, 70, 88, 60, 80, 68, 91, 65, 78, 62],
+    'Aptitude': [80, 70, 90, 60, 85, 65, 95, 68, 82, 64],
+    'Technical': [78, 72, 89, 58, 84, 66, 94, 67, 80, 60],
+    'Certifications': [3, 2, 5, 1, 4, 2, 6, 2, 3, 1],
+    'Placed': [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+
+df = pd.DataFrame(data)
+
+# Step 3: Split Features & Target
+X = df.drop('Placed', axis=1)
+y = df['Placed']
+
+# Step 4: Train-Test Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Step 5: Logistic Regression Model
+lr = LogisticRegression()
+lr.fit(X_train, y_train)
+lr_pred = lr.predict(X_test)
+
+# Step 6: Random Forest Model
+rf = RandomForestClassifier(n_estimators=100)
+rf.fit(X_train, y_train)
+rf_pred = rf.predict(X_test)
+
+# Step 7: Accuracy
+print("Logistic Regression Accuracy:", accuracy_score(y_test, lr_pred))
+print("Random Forest Accuracy:", accuracy_score(y_test, rf_pred))
+
+# Step 8: User Input Prediction (Fixed)
+print("\nEnter Student Details:")
+
+tenth = float(input("10th %: "))
+twelfth = float(input("12th %: "))
+ug = float(input("UG %: "))
+aptitude = float(input("Aptitude Score: "))
+technical = float(input("Technical Score: "))
+certs = int(input("Certifications Count: "))
+
+# FIX: Use DataFrame instead of NumPy array
+new_data = pd.DataFrame({
+    '10th': [tenth],
+    '12th': [twelfth],
+    'UG': [ug],
+    'Aptitude': [aptitude],
+    'Technical': [technical],
+    'Certifications': [certs]
+})
+
+lr_result = lr.predict(new_data)
+rf_result = rf.predict(new_data)
+
+print("\nPrediction Results:")
+print("Logistic Regression:", "Eligible" if lr_result[0]==1 else "Not Eligible")
+print("Random Forest:", "Eligible" if rf_result[0]==1 else "Not Eligible")
