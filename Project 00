@@ -1,0 +1,67 @@
+#  Campus Placement Eligibility Predictor
+
+A Machine Learning project that predicts whether a student is eligible for campus placement based on academic performance and skills.
+
+---
+
+##  Overview
+This project uses:
+- Logistic Regression
+- Random Forest
+
+to predict placement eligibility using student data like marks, aptitude, and certifications.
+
+---
+
+##  Features
+- Predicts: Eligible / Not Eligible
+- Input Parameters:
+  - 10th %
+  - 12th %
+  - UG %
+  - Aptitude Score
+  - Technical Score
+  - Certifications
+- Compares two ML models
+
+---
+
+##  Algorithms Used
+- Logistic Regression (for probability-based classification)
+- Random Forest (for higher accuracy using multiple trees)
+
+---
+
+##  Tech Stack
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Google Colab
+
+---
+
+##  How to Run
+1. Open in Google Colab
+2. Run all cells
+3. Enter input values
+4. Get prediction
+
+---
+
+##  Output
+- Logistic Regression Prediction
+- Random Forest Prediction
+- Accuracy of models
+
+---
+
+##  Future Improvements
+- Add real dataset
+- Build web app (Streamlit)
+- Add visualization
+
+---
+
+##  Conclusion
+This project shows how machine learning can help predict student placement eligibility using data-driven techniques.
